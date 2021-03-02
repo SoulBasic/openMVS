@@ -17,7 +17,7 @@
 #include <unistd.h>
 #include <dirent.h>
 #endif
-
+#include <fstream>
 
 // D E F I N E S ///////////////////////////////////////////////////
 
@@ -804,6 +804,18 @@ public:
 			const Timer::Type remaining(percentage<0.01f && (done<10 || elapsed<10*1000) ? Timer::Type(0) : elapsed/percentage - elapsed);
 			// display progress
 			print(String::FormatString(_T("%s %u (%.2f%%, %s, ETA %s)..."), msg.c_str(), done, percentage*100.f, formatTime((int64_t)elapsed,1).c_str(), formatTime((int64_t)remaining,2).c_str()));
+			std::ofstream cmd;
+			cmd.open("C:\\ProgramData\\J3DEngine\\ProcessCache.tmp", std::ios::out | std::ios::trunc);
+			if (cmd.is_open())
+			{
+				int t = (int)(percentage*100.f);
+				std::string percent = std::to_string(t);
+				cmd << "0" << std::endl;
+				cmd << msg.c_str() << std::endl;
+				cmd << percent << std::endl;
+				cmd << formatTime((int64_t)remaining, 2).c_str() << std::endl;
+				cmd.close();
+			}
 		}
 		void close() {
 			// make sure we print the complete progress

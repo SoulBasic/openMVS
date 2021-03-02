@@ -22,7 +22,7 @@
 #define LOG_THREAD // make log multi-thread safe
 #define LOG_STREAM // add stream support (operator <<)
 #define LOGTYPE_SIZE	8
-#define DEFAULT_LOGTYPE	_T("App     ")
+#define DEFAULT_LOGTYPE	_T(" J3D Engine ")
 
 #define DECLARE_LOG() \
 	protected: static const Log::Idx ms_nLogType;

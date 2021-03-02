@@ -321,9 +321,9 @@ String Util::GetOSInfo()
 	#endif
 		os = _T("Windows 10+");
 	else if (IsWindows8Point1OrGreater())
-		os = _T("Windows 8.1");
+		os = _T("Windows 10");
 	else if (IsWindows8OrGreater())
-		os = _T("Windows 8");
+		os = _T("Windows 10");
 	else if (IsWindows7SP1OrGreater())
 		os = _T("Windows 7 (SP1)");
 	else if (IsWindows7OrGreater())
@@ -662,7 +662,7 @@ void Util::LogMemoryInfo()
 	LOG(_T("\tQuotaNonPagedPoolUsage %s"), SEACAVE::Util::formatBytes(pmc.QuotaNonPagedPoolUsage).c_str());
 	LOG(_T("\tPagefileUsage %s"), SEACAVE::Util::formatBytes(pmc.PagefileUsage).c_str());
 	LOG(_T("\tPeakPagefileUsage %s"), SEACAVE::Util::formatBytes(pmc.PeakPagefileUsage).c_str());
-	LOG(_T("} ENDINFO"));
+	LOG(_T("} Task is done"));
 }
 #else // _MSC_VER
 void Util::LogMemoryInfo()

@@ -95,6 +95,7 @@ bool ObjModel::MaterialLib::Load(const String& fileName)
 {
 	const size_t numMaterials(materials.size());
 	std::ifstream in(fileName.c_str());
+	DEBUG_EXTRA("filename %s", fileName.c_str());
 	String keyword;
 	while (in.good() && in >> keyword) {
 		if (keyword == "newmtl") {
@@ -244,7 +245,7 @@ bool ObjModel::Load(const String& fileName)
 		} else
 		if (keyword == "mtllib") {
 			in >> keyword;
-			if (!material_lib.Load(keyword))
+			if (!material_lib.Load(WORKING_FOLDER + keyword))
 				return false;
 		} else
 		if (keyword == "usemtl") {

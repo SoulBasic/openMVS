@@ -228,6 +228,7 @@ Scene::~Scene()
 
 void Scene::Empty()
 {
+	LOG(_T("scene empty"));
 	ReleasePointCloud();
 	ReleaseMesh();
 	textures.Release();
@@ -237,6 +238,7 @@ void Scene::Empty()
 }
 void Scene::Release()
 {
+	LOG(_T("scene release"));
 	if (!thread.isRunning()) {
 		events.AddEvent(new EVTClose());
 		thread.join();
@@ -263,7 +265,7 @@ void Scene::ReleaseMesh()
 bool Scene::Init(int width, int height, LPCTSTR windowName, LPCTSTR fileName, LPCTSTR meshFileName)
 {
 	ASSERT(scene.IsEmpty());
-
+	LOG(_T("init scene"));
 	// init window
 	if (glfwInit() == GL_FALSE)
 		return false;
@@ -310,7 +312,7 @@ bool Scene::Init(int width, int height, LPCTSTR windowName, LPCTSTR fileName, LP
 bool Scene::Open(LPCTSTR fileName, LPCTSTR meshFileName)
 {
 	ASSERT(fileName);
-	DEBUG_EXTRA("Loading: '%s'", Util::getFileNameExt(fileName).c_str());
+	DEBUG_EXTRA("Load1ng: '%s'", Util::getFileNameExt(fileName).c_str());
 	Empty();
 	sceneName = fileName;
 
@@ -379,6 +381,7 @@ bool Scene::Open(LPCTSTR fileName, LPCTSTR meshFileName)
 	window.camera->maxCamID = images.size();
 	window.SetName(String::FormatString((name + _T(": %s")).c_str(), Util::getFileName(fileName).c_str()));
 	window.Reset(MINF(2u, images.size()));
+	DEBUG_EXTRA("Load1ned");
 	return true;
 }
 

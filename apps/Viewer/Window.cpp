@@ -56,6 +56,7 @@ Window::~Window()
 
 void Window::Release()
 {
+	LOG(_T("window release"));
 	if (IsValid()) {
 		glfwDestroyWindow(window);
 		window = NULL;
@@ -69,6 +70,7 @@ void Window::Release()
 
 bool Window::Init(int width, int height, LPCTSTR name)
 {
+	LOG(_T("init window"));
 	glfwDefaultWindowHints();
 	glfwWindowHint(GLFW_VISIBLE, 0);
 	window = glfwCreateWindow(width, height, name, NULL, NULL);
@@ -86,6 +88,7 @@ bool Window::Init(int width, int height, LPCTSTR name)
 }
 void Window::SetCamera(CameraPtr cam)
 {
+	
 	camera = cam;
 	int width, height;
 	glfwGetWindowSize(window, &width, &height);
@@ -97,6 +100,7 @@ void Window::SetName(LPCTSTR name)
 }
 void Window::SetVisible(bool v)
 {
+	LOG(_T("window SetVisible"));
 	if (v)
 		glfwShowWindow(window);
 	else
@@ -104,6 +108,7 @@ void Window::SetVisible(bool v)
 }
 void Window::Reset(uint32_t _minViews)
 {
+	LOG(_T("reset window"));
 	if (camera)
 		camera->Reset();
 	sparseType = SPR_ALL;
@@ -216,7 +221,10 @@ void Window::Key(int k, int /*scancode*/, int action, int mod)
 		break;
 	case GLFW_KEY_R:
 		if (action == GLFW_RELEASE)
+		{
 			Reset();
+		}
+			
 		break;
 	case GLFW_KEY_C:
 		if (action == GLFW_RELEASE)
@@ -314,6 +322,7 @@ void Window::Scroll(GLFWwindow* window, double xoffset, double yoffset)
 
 void Window::Drop(int count, const char** paths)
 {
+	LOG(_T("window drop"));
 	if (clbkOpenScene && count > 0) {
 		SetVisible(false);
 		String fileName(paths[0]);

@@ -65,7 +65,6 @@ public:
 
 	GLuint listPointCloud;
 	GLuint listMesh;
-
 	// multi-threading
 	static SEACAVE::EventQueue events; // internal events queue (processed by the working threads)
 	static SEACAVE::Thread thread; // worker thread

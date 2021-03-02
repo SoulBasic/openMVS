@@ -39,7 +39,7 @@ using namespace VIEWER;
 
 // D E F I N E S ///////////////////////////////////////////////////
 
-#define APPNAME _T("Viewer")
+#define APPNAME _T("J3DViewer")
 
 
 // S T R U C T S ///////////////////////////////////////////////////
@@ -212,6 +212,7 @@ int main(int argc, LPCTSTR* argv)
 
 	// create viewer
 	Scene viewer;
+	LOG(_T("create viewer"));
 	if (!viewer.Init(1280, 720, APPNAME,
 			OPT::strInputFileName.IsEmpty() ? NULL : MAKE_PATH_SAFE(OPT::strInputFileName).c_str(),
 			OPT::strMeshFileName.IsEmpty() ? NULL : MAKE_PATH_SAFE(OPT::strMeshFileName).c_str()))

@@ -530,7 +530,7 @@ bool MeshTexture::ListCameraFaces(FaceDataViewArr& facesDatas, float fOutlierThr
 		}
 		// load image
 		unsigned level(nResolutionLevel);
-		const unsigned imageSize(imageData.RecomputeMaxResolution(level, nMinResolution));
+		const unsigned imageSize(imageData.RecomputeMaxResolution(level, nMinResolution, 1000U));
 		if ((imageData.image.empty() || MAXF(imageData.width,imageData.height) != imageSize) && !imageData.ReloadImage(imageSize)) {
 			#ifdef TEXOPT_USE_OPENMP
 			bAbort = true;
